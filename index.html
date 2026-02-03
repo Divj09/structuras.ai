@@ -977,32 +977,13 @@
                     
                   <div class="hero-media-wrapper" style="position:relative; width:100%; height:100%;">
 
-    <!-- MAIN VIDEO -->
-    <video class="hero-video"
-           autoplay
-           muted
-           loop
-           playsinline
-           poster="assets/images/modern-villa.jpg"
-           onerror="this.style.display='none'; document.getElementById('villaFallback').style.display='block';">
-
-        <source src="https://files.catbox.moe/r74hy8.mp4" type="video/mp4">
-
-        Your browser does not support the video tag.
-    </video>
-
-    <!-- IMAGE FALLBACK -->
-    <img id="villaFallback"
-         src="assets/images/modern-villa.jpg"
-         alt="Modern Luxury Villa"
-         style="
-            display:none;
-            width:100%;
-            height:100%;
-            object-fit:cover;
-            border-radius:20px;
-         ">
-</div>
+    <!-- Main Video -->
+                    <video class="hero-video" autoplay muted loop playsinline
+                           onerror="this.onerror=null; this.style.display='none'; document.getElementById('villaFallback').style.display='flex';">
+                        <source src="https://drive.google.com/uc?export=download&id=1-PFyyBj6lcAVPhgv5C9Cr1Het_q2w6P0" type="video/mp4">
+                        <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" fallback>
+                        Your browser does not support the video tag.
+                    </video>
 
                     <!-- Video Fallback -->
                     <div id="villaFallback" class="video-fallback" style="display: none;">
@@ -1395,5 +1376,6 @@
 </body>
 
 </html>
+
 
 
