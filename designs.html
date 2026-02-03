@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Gallery | Structuras.ai</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ========== GLOBAL STYLES ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #22c55e;
+            --primary-dark: #16a34a;
+            --secondary: #3b82f6;
+            --accent: #8b5cf6;
+            --dark-bg: #0f172a;
+            --darker-bg: #020617;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --text-light: #f8fafc;
+            --text-dim: #94a3b8;
+            --glass: rgba(255, 255, 255, 0.08);
+            --border: rgba(255, 255, 255, 0.1);
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+
+        section {
+            padding: 100px 5%;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+            position: relative;
+        }
+
+        .section-title span {
+            color: var(--primary);
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-dim);
+            max-width: 700px;
+            margin-bottom: 3rem;
+            line-height: 1.7;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: var(--shadow);
+        }
+        .section-subtitle {
+  text-align: center;
+  max-width: 700px;
+  margin: 20px auto;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;  /* stack vertically */
+  align-items: center;     /* center horizontally */
+}
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(34, 197, 94, 0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(34, 197, 94, 0.1);
+        }
+
+        .glass-card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        /* ========== TOP NAVIGATION ========== */
+        .main-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            padding: 0 5%;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
+
+        .logo i {
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 8px;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.92rem;
+            font-weight: 500;
+            padding: 10px 16px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover {
+            background: rgba(34, 197, 94, 0.1);
+            color: var(--primary);
+        }
+
+        .nav-links a.active {
+            background: rgba(34, 197, 94, 0.15);
+            color: var(--primary);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* ========== PAGE HEADER ========== */
+        .page-header {
+            padding-top: 150px;
+            padding-bottom: 80px;
+            background: linear-gradient(135deg, var(--darker-bg), #1e293b);
+            text-align: center;
+        }
+
+        /* ========== GALLERY SECTION ========== */
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 50px;
+        }
+
+        .gallery-item {
+            height: 250px;
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        /* ========== DESIGN CATEGORIES ========== */
+        .categories {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            padding: 10px 25px;
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .category-btn:hover,
+        .category-btn.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+
+        /* ========== DESIGN DETAILS MODAL ========== */
+        .design-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 10000;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            max-width: 1200px;
+            margin: 50px auto;
+            background: var(--darker-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 10001;
+        }
+
+        /* ========== FOOTER ========== */
+        footer {
+            background: #020617;
+            padding: 60px 5% 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: var(--text-dim);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(30, 41, 59, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+
+        /* ========== LOADING SCREEN ========== */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--darker-bg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 5px solid rgba(34, 197, 94, 0.1);
+            border-top: 5px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        /* ========== RESPONSIVE DESIGN ========== */
+        @media (max-width: 992px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .mobile-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 300px;
+                height: 100vh;
+                background: var(--darker-bg);
+                padding: 100px 40px;
+                transition: right 0.5s ease;
+                z-index: 999;
+                border-left: 1px solid var(--border);
+            }
+            
+            .mobile-menu.active {
+                right: 0;
+            }
+            
+            .mobile-menu .nav-links {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .mobile-menu-close {
+                position: absolute;
+                top: 30px;
+                right: 30px;
+                font-size: 1.8rem;
+                cursor: pointer;
+                color: var(--primary);
+            }
+            
+            .section-title {
+                font-size: 2.3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 80px 5%;
+            }
+            
+            .page-header {
+                padding-top: 120px;
+                padding-bottom: 60px;
+            }
+            
+            .gallery-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .categories {
+                gap: 10px;
+            }
+            
+            .category-btn {
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .page-header {
+                padding-top: 100px;
+                padding-bottom: 50px;
+            }
+        }
+
+        /* ========== UTILITY CLASSES ========== */
+        .text-center {
+            text-align: center;
+        }
+
+        .mb-30 {
+            margin-bottom: 30px;
+        }
+
+        .mt-50 {
+            margin-top: 50px;
+        }
+
+        /* ========== ANIMATIONS ========== */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Loading Design Gallery...</div>
+    </div>
+
+    <!-- Top Navigation -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-robot"></i>
+                Structuras.ai
+            </a>
+            
+            <div class="nav-links">
+                <a href="index.html" id="nav-home">Home</a>
+                <a href="features.html" id="nav-features">Features</a>
+                <a href="marketplace.html" id="nav-marketplace">Marketplace</a>
+                <a href="designs.html" id="nav-designs">Designs</a>
+                <a href="founders.html" id="nav-founders">Founders</a>
+                <a href="index.html#contact" class="btn">Get Started</a>
+            </div>
+            
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-close">
+            <i class="fas fa-times"></i>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" id="mobile-nav-home">Home</a>
+            <a href="features.html" id="mobile-nav-features">Features</a>
+            <a href="marketplace.html" id="mobile-nav-marketplace">Marketplace</a>
+            <a href="designs.html" id="mobile-nav-designs">Designs</a>
+            <a href="founders.html" id="mobile-nav-founders">Founders</a>
+            <a href="index.html#contact" class="btn">Get Started</a>
+        </div>
+    </div>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="container">
+            <h1 class="section-title">AI-Generated <span>Design Gallery</span></h1>
+            <p class="section-subtitle">Explore stunning architectural designs created by our artificial intelligence engine</p>
+        </div>
+    </div>
+
+    <!-- Design Categories -->
+    <section id="categories">
+        <div class="container">
+            <div class="categories">
+                <button class="category-btn active" data-category="all">All Designs</button>
+                <button class="category-btn" data-category="modern">Modern Villas</button>
+                <button class="category-btn" data-category="contemporary">Contemporary</button>
+                <button class="category-btn" data-category="luxury">Luxury Homes</button>
+                <button class="category-btn" data-category="sustainable">Sustainable</button>
+                <button class="category-btn" data-category="compact">Compact Homes</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Design Gallery -->
+    <section id="gallery">
+        <div class="container">
+            <div class="gallery-container">
+                <div class="gallery-item" data-category="modern">
+                    <img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Modern Villa">
+                    <div class="gallery-overlay">
+                        <h4>Modern Minimalist Villa</h4>
+                        <p>Clean lines, open spaces, natural light</p>
+                        <small>AI-generated for 2500 sqft plot</small>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="luxury">
+                    <img src="https://images.unsplash.com/photo-1613977257592-4871e5fcd7c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Luxury Villa">
+                    <div class="gallery-overlay">
+                        <h4>Luxury Estate</h4>
+                        <p>Premium finishes & smart home features</p>
+                        <small>5000 sqft with pool and garden</small>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="sustainable">
+                    <img src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Sustainable Home">
+                    <div class="gallery-overlay">
+                        <h4>Eco-Friendly Residence</h4>
+                        <p>Solar powered, rainwater harvesting</p>
+                        <small>Net-zero energy consumption</small>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="contemporary">
+                    <img src="https://images.unsplash.com/photo-1613545325278-f24b0cae1224?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Contemporary Villa">
+                    <div class="gallery-overlay">
+                        <h4>Contemporary Design</h4>
+                        <p>Sleek design with innovative features</p>
+                        <small>Mixed materials: glass, steel, wood</small>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="compact">
+                    <img src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Compact Home">
+                    <div class="gallery-overlay">
+                        <h4>Urban Compact Home</h4>
+                        <p>Maximized space in 1200 sqft</p>
+                        <small>Perfect for city living</small>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="modern">
+                    <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Modern Architecture">
+                    <div class="gallery-overlay">
+                        <h4>Modern Glass House</h4>
+                        <p>Floor-to-ceiling windows</p>
+                        <small>Panoramic mountain views</small>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="luxury">
+                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Luxury Penthouse">
+                    <div class="gallery-overlay">
+                        <h4>Penthouse Design</h4>
+                        <p>Rooftop terrace, city views</p>
+                        <small>3000 sqft luxury apartment</small>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="sustainable">
+                    <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Green Home">
+                    <div class="gallery-overlay">
+                        <h4>Green Roof House</h4>
+                        <p>Living roof, geothermal heating</p>
+                        <small>Self-sustainable design</small>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-50">
+                <h3>Inspired by These Designs?</h3>
+                <p style="color: var(--text-dim); margin: 20px auto; max-width: 600px;">Our AI can create a custom design based on your specific requirements, plot size, and style preferences.</p>
+                <a href="index.html#contact" class="btn">
+                    <i class="fas fa-magic"></i>
+                    Create Your Custom Design
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Design Process -->
+    <section id="design-process" style="background: var(--darker-bg);">
+        <div class="container">
+            <h2 class="section-title text-center">How Our AI <span>Creates Designs</span></h2>
+            <p class="section-subtitle text-center">From basic inputs to stunning architectural visualizations</p>
+            
+            <div class="gallery-container" style="margin-top: 50px;">
+                <div class="glass-card" style="text-align: center; padding: 40px 30px;">
+                    <div style="font-size: 3rem; color: var(--primary); margin-bottom: 20px;">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <h3>1. Site Analysis</h3>
+                    <p>AI analyzes plot dimensions, orientation, topography, and local climate data to optimize the design.</p>
+                </div>
+                
+                <div class="glass-card" style="text-align: center; padding: 40px 30px;">
+                    <div style="font-size: 3rem; color: var(--primary); margin-bottom: 20px;">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>2. AI Generation</h3>
+                    <p>Neural networks generate multiple design options based on your style preferences and requirements.</p>
+                </div>
+                
+                <div class="glass-card" style="text-align: center; padding: 40px 30px;">
+                    <div style="font-size: 3rem; color: var(--primary); margin-bottom: 20px;">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <h3>3. 3D Modeling</h3>
+                    <p>Designs are converted into detailed 3D models with accurate materials, lighting, and textures.</p>
+                </div>
+                
+                <div class="glass-card" style="text-align: center; padding: 40px 30px;">
+                    <div style="font-size: 3rem; color: var(--primary); margin-bottom: 20px;">
+                        <i class="fas fa-vr-cardboard"></i>
+                    </div>
+                    <h3>4. VR Experience</h3>
+                    <p>Walk through your design in virtual reality to experience the space before construction begins.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Design Modal -->
+    <div class="design-modal" id="designModal">
+        <button class="modal-close" id="modalClose">&times;</button>
+        <div class="modal-content">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0;">
+                <div style="height: 600px; overflow: hidden;">
+                    <img src="" alt="" id="modalImage" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="padding: 40px;">
+                    <h2 id="modalTitle">Modern Villa Design</h2>
+                    <p id="modalDescription" style="color: var(--text-dim); margin: 20px 0;">Description of the design</p>
+                    
+                    <div style="margin: 30px 0;">
+                        <h4>Design Specifications</h4>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px;">
+                            <div>
+                                <p style="color: var(--text-dim); margin: 5px 0;">Plot Size</p>
+                                <p style="font-weight: 600;" id="modalPlot">2500 sqft</p>
+                            </div>
+                            <div>
+                                <p style="color: var(--text-dim); margin: 5px 0;">Built-up Area</p>
+                                <p style="font-weight: 600;" id="modalArea">1800 sqft</p>
+                            </div>
+                            <div>
+                                <p style="color: var(--text-dim); margin: 5px 0;">Bedrooms</p>
+                                <p style="font-weight: 600;" id="modalBedrooms">3</p>
+                            </div>
+                            <div>
+                                <p style="color: var(--text-dim); margin: 5px 0;">Bathrooms</p>
+                                <p style="font-weight: 600;" id="modalBathrooms">3.5</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin: 30px 0;">
+                        <h4>Key Features</h4>
+                        <ul id="modalFeatures" style="color: var(--text-dim); margin-top: 10px; padding-left: 20px;">
+                            <li>Open floor plan</li>
+                            <li>Large windows for natural light</li>
+                            <li>Energy efficient design</li>
+                        </ul>
+                    </div>
+                    
+                    <a href="index.html#contact" class="btn" style="width: 100%; text-align: center;">
+                        <i class="fas fa-magic"></i>
+                        Customize This Design
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Structuras.ai</h3>
+                    <p>A next-gen application combining an intelligent marketplace with AI-generated 3D designs and ready-made layouts to save time and build smarter.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Platform</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="features.html">AI Features</a></li>
+                        <li><a href="marketplace.html">Professional Network</a></li>
+                        <li><a href="designs.html">Design Gallery</a></li>
+                        <li><a href="founders.html">Our Founders</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Design Styles</h3>
+                    <ul class="footer-links">
+                        <li><a href="designs.html#categories" data-category="modern">Modern Villas</a></li>
+                        <li><a href="designs.html#categories" data-category="contemporary">Contemporary</a></li>
+                        <li><a href="designs.html#categories" data-category="luxury">Luxury Homes</a></li>
+                        <li><a href="designs.html#categories" data-category="sustainable">Sustainable Designs</a></li>
+                        <li><a href="designs.html#categories" data-category="compact">Compact Homes</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <p>Questions about our designs?</p>
+                    <div style="margin-top: 20px;">
+                        <p><i class="fas fa-envelope" style="color: var(--primary); margin-right: 10px;"></i> divbisht01@gmail.com, ahmednizam0024@gmail.com</p>
+                        <p><i class="fas fa-map-marker-alt" style="color: var(--primary); margin-right: 10px;"></i> INDIA</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 Structuras.ai. All rights reserved. | A next-gen app for AI 3D designs and smart marketplaces.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ========== SET ACTIVE NAVIGATION LINK ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set designs page as active
+            document.getElementById('nav-designs').classList.add('active');
+            document.getElementById('mobile-nav-designs').classList.add('active');
+        });
+
+        // ========== MOBILE MENU TOGGLE ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const mobileMenuClose = document.querySelector('.mobile-menu-close');
+            const mobileMenuLinks = document.querySelectorAll('.mobile-menu .nav-links a');
+            
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.add('active');
+                });
+                
+                mobileMenuClose.addEventListener('click', () => {
+                    mobileMenu.classList.remove('active');
+                });
+                
+                mobileMenuLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.remove('active');
+                    });
+                });
+            }
+            
+            // ========== HIDE LOADING SCREEN ==========
+            setTimeout(() => {
+                const loadingScreen = document.getElementById('loadingScreen');
+                if (loadingScreen) {
+                    loadingScreen.style.opacity = '0';
+                    setTimeout(() => {
+                        loadingScreen.style.display = 'none';
+                    }, 500);
+                }
+            }, 1500);
+            
+            // ========== CATEGORY FILTER ==========
+            const categoryBtns = document.querySelectorAll('.category-btn');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            
+            categoryBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    categoryBtns.forEach(b => b.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const category = this.getAttribute('data-category');
+                    
+                    // Filter gallery items
+                    galleryItems.forEach(item => {
+                        if (category === 'all' || item.getAttribute('data-category') === category) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // ========== MODAL FUNCTIONALITY ==========
+            const modal = document.getElementById('designModal');
+            const modalClose = document.getElementById('modalClose');
+            const modalImage = document.getElementById('modalImage');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalDescription = document.getElementById('modalDescription');
+            const modalPlot = document.getElementById('modalPlot');
+            const modalArea = document.getElementById('modalArea');
+            const modalBedrooms = document.getElementById('modalBedrooms');
+            const modalBathrooms = document.getElementById('modalBathrooms');
+            const modalFeatures = document.getElementById('modalFeatures');
+            
+            // Sample design data (in real app, this would come from a database)
+            const designData = {
+                'modern-villa': {
+                    title: 'Modern Minimalist Villa',
+                    description: 'Clean lines and open spaces define this contemporary villa designed for optimal natural light and seamless indoor-outdoor living.',
+                    image: 'https://images.unsplash.com/photo-1613977257363-707ba9348227?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                    plot: '2500 sqft',
+                    area: '1800 sqft',
+                    bedrooms: '3',
+                    bathrooms: '3.5',
+                    features: [
+                        'Open floor plan with flowing spaces',
+                        'Floor-to-ceiling windows',
+                        'Rooftop terrace with garden',
+                        'Smart home automation',
+                        'Energy-efficient design',
+                        'Private courtyard'
+                    ]
+                },
+                'luxury-estate': {
+                    title: 'Luxury Estate Design',
+                    description: 'Premium finishes and expansive spaces characterize this luxury estate with state-of-the-art amenities.',
+                    image: 'https://images.unsplash.com/photo-1613977257592-4871e5fcd7c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                    plot: '5000 sqft',
+                    area: '4200 sqft',
+                    bedrooms: '5',
+                    bathrooms: '6',
+                    features: [
+                        'Infinity pool with outdoor kitchen',
+                        'Home theater and wine cellar',
+                        'Guest house with separate entrance',
+                        'Professional-grade kitchen',
+                        'Landscaped gardens',
+                        'Four-car garage'
+                    ]
+                }
+            };
+            
+            // Open modal when gallery item is clicked
+            galleryItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const imgSrc = this.querySelector('img').src;
+                    const title = this.querySelector('h4').textContent;
+                    const description = this.querySelector('p').textContent;
+                    
+                    // Set modal content
+                    modalImage.src = imgSrc;
+                    modalTitle.textContent = title;
+                    modalDescription.textContent = description;
+                    
+                    // Set default values or fetch from data
+                    const designKey = imgSrc.includes('7363') ? 'modern-villa' : 'luxury-estate';
+                    const data = designData[designKey];
+                    
+                    if (data) {
+                        modalPlot.textContent = data.plot;
+                        modalArea.textContent = data.area;
+                        modalBedrooms.textContent = data.bedrooms;
+                        modalBathrooms.textContent = data.bathrooms;
+                        
+                        // Update features list
+                        modalFeatures.innerHTML = '';
+                        data.features.forEach(feature => {
+                            const li = document.createElement('li');
+                            li.textContent = feature;
+                            modalFeatures.appendChild(li);
+                        });
+                    }
+                    
+                    // Show modal
+                    modal.style.display = 'block';
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+            
+            // Close modal
+            modalClose.addEventListener('click', function() {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+            
+            // Close modal when clicking outside
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            // ========== SMOOTH SCROLLING ==========
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

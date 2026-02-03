@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Features | Structuras.ai</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ========== GLOBAL STYLES ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #22c55e;
+            --primary-dark: #16a34a;
+            --secondary: #3b82f6;
+            --accent: #8b5cf6;
+            --dark-bg: #0f172a;
+            --darker-bg: #020617;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --text-light: #f8fafc;
+            --text-dim: #94a3b8;
+            --glass: rgba(255, 255, 255, 0.08);
+            --border: rgba(255, 255, 255, 0.1);
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+
+        section {
+            padding: 100px 5%;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+            position: relative;
+        }
+
+        .section-title span {
+            color: var(--primary);
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-dim);
+            max-width: 700px;
+            margin-bottom: 3rem;
+            line-height: 1.7;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: var(--shadow);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(34, 197, 94, 0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(34, 197, 94, 0.1);
+        }
+
+        .glass-card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        /* ========== TOP NAVIGATION ========== */
+        .main-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            padding: 0 5%;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
+
+        .logo i {
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 8px;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.92rem;
+            font-weight: 500;
+            padding: 10px 16px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover {
+            background: rgba(34, 197, 94, 0.1);
+            color: var(--primary);
+        }
+
+        .nav-links a.active {
+            background: rgba(34, 197, 94, 0.15);
+            color: var(--primary);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* ========== PAGE HEADER ========== */
+        .page-header {
+            padding-top: 150px;
+            padding-bottom: 80px;
+            background: linear-gradient(135deg, var(--darker-bg), #1e293b);
+            text-align: center;
+        }
+
+        /* ========== FEATURES GRID ========== */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 40px 30px;
+            height: 100%;
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(34, 197, 94, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 2.5rem;
+            color: var(--primary);
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        /* ========== DEMO SECTION ========== */
+        .demo-container {
+            margin-top: 50px;
+            border-radius: 20px;
+            overflow: hidden;
+            height: 500px;
+            background: var(--darker-bg);
+            border: 1px solid var(--border);
+            position: relative;
+        }
+
+        .demo-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* ========== FOOTER ========== */
+        footer {
+            background: #020617;
+            padding: 60px 5% 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: var(--text-dim);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(30, 41, 59, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+
+        /* ========== LOADING SCREEN ========== */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--darker-bg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 5px solid rgba(34, 197, 94, 0.1);
+            border-top: 5px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        /* ========== RESPONSIVE DESIGN ========== */
+        @media (max-width: 1200px) {
+            .demo-container {
+                height: 400px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .mobile-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 300px;
+                height: 100vh;
+                background: var(--darker-bg);
+                padding: 100px 40px;
+                transition: right 0.5s ease;
+                z-index: 999;
+                border-left: 1px solid var(--border);
+            }
+            
+            .mobile-menu.active {
+                right: 0;
+            }
+            
+            .mobile-menu .nav-links {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .mobile-menu-close {
+                position: absolute;
+                top: 30px;
+                right: 30px;
+                font-size: 1.8rem;
+                cursor: pointer;
+                color: var(--primary);
+            }
+            
+            .section-title {
+                font-size: 2.3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 80px 5%;
+            }
+            
+            .page-header {
+                padding-top: 120px;
+                padding-bottom: 60px;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .demo-container {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .page-header {
+                padding-top: 100px;
+                padding-bottom: 50px;
+            }
+        }
+
+        /* ========== UTILITY CLASSES ========== */
+        .text-center {
+            text-align: center;
+        }
+
+        .mb-30 {
+            margin-bottom: 30px;
+        }
+
+        .mt-50 {
+            margin-top: 50px;
+        }
+
+        /* ========== ANIMATIONS ========== */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        .section-subtitle {
+  text-align: center;
+  max-width: 700px;
+  margin: 20px auto;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;  /* stack vertically */
+  align-items: center;     /* center horizontally */
+}
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Loading Structuras.ai Features...</div>
+    </div>
+
+    <!-- Top Navigation -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-robot"></i>
+                Structuras.ai
+            </a>
+            
+            <div class="nav-links">
+                <a href="index.html" id="nav-home">Home</a>
+                <a href="features.html" id="nav-features">Features</a>
+                <a href="marketplace.html" id="nav-marketplace">Marketplace</a>
+                <a href="designs.html" id="nav-designs">Designs</a>
+                <a href="founders.html" id="nav-founders">Founders</a>
+                <a href="index.html#contact" class="btn">Get Started</a>
+            </div>
+            
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-close">
+            <i class="fas fa-times"></i>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" id="mobile-nav-home">Home</a>
+            <a href="features.html" id="mobile-nav-features">Features</a>
+            <a href="marketplace.html" id="mobile-nav-marketplace">Marketplace</a>
+            <a href="designs.html" id="mobile-nav-designs">Designs</a>
+            <a href="founders.html" id="mobile-nav-founders">Founders</a>
+            <a href="index.html#contact" class="btn">Get Started</a>
+        </div>
+    </div>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="container">
+            <h1 class="section-title">AI-Powered <span>Features</span></h1>
+            <p class="section-subtitle">A unified marketplace featuring AI-generated 3D designs and ready-to-use plans to save time and streamline construction decisions.</p>
+        </div>
+    </div>
+
+    <!-- Main Features Section -->
+   
+            <div class="features-grid">
+                <div class="glass-card feature-card floating">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Neural Design Generation</h3>
+                    <p>Our AI analyzes thousands of architectural styles, local building codes, and environmental factors to generate optimized designs specific to your location and preferences.</p>
+                </div>
+                
+                <div class="glass-card feature-card floating" style="animation-delay: 0.2s;">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Real-Time 3D Rendering</h3>
+                    <p>Watch as your design transforms from 2D sketches to fully-rendered 3D models in real-time, with accurate lighting, shadows, and material textures.</p>
+                </div>
+                
+                <div class="glass-card feature-card floating" style="animation-delay: 0.4s;">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Cost Estimates</h3>
+                    <p>Get estimated prices from nearby builders and chat with them instantly on our platform.</p>
+                </div>
+                
+                <div class="glass-card feature-card floating" style="animation-delay: 0.6s;">
+                    <div class="feature-icon">
+                        <i class="fas fa-hard-hat"></i>
+                    </div>
+                    <h3>Builder Discovery & Chat</h3>
+                    <p>Compare multiple builder quotes instantly, real-time in-app chat with builders and professionals</p>
+                </div>
+                
+                <div class="glass-card feature-card floating" style="animation-delay: 0.8s;">
+                    <div class="feature-icon">
+                        <i class="fas fa-vr-cardboard"></i>
+                    </div>
+                    <h3>VR/AR Integration</h3>
+                    <p>Experience your designs in virtual and augmented reality before construction begins. Walk through your future home in life-like detail.</p>
+                </div>
+                
+                <div class="glass-card feature-card floating" style="animation-delay: 1s;">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>With User & Vendor Trust Note</h3>
+                    <p>This marketplace is currently under development and will be launched soon. Your information will be used only to improve your experience. Contact us for any queries.</p>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" style="background: var(--darker-bg);">
+        <div class="container">
+            <h2 class="section-title text-center">AI Design <span>In Action</span></h2>
+            <p class="section-subtitle text-center">See how our AI transforms basic inputs into stunning architectural designs</p>
+            
+            <div class="demo-container glass-card">
+                <video class="demo-video" autoplay muted loop playsinline>
+                    <source src="https://files.catbox.moe/r74hy8.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            
+            <div class="text-center mt-50">
+                <h3>Ready to Experience AI-Powered Design?</h3>
+                <p style="color: var(--text-dim); margin: 20px auto; max-width: 600px;">A smart marketplace offering AI-generated 3D designs and ready-made layouts, helping you save time and connect with the right builders.</p>
+                <a href="index.html#contact" class="btn">
+                    <i class="fas fa-magic"></i>
+                    Launching Soon
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Features -->
+    <section id="technical-features">
+        <div class="container">
+            <h2 class="section-title text-center">Technical <span>Architecture</span></h2>
+            <p class="section-subtitle text-center">A unified marketplace featuring AI-generated 3D designs and ready-to-use plans to save time and streamline construction decisions.</p>
+            
+            <div class="features-grid">
+                <div class="glass-card feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-vr-cardboard"></i>
+                    </div>
+                    <h3>3D & Visualization</h3>
+                    <p>Pre-generated 3D models with realistic lighting and PBR materials, real-time 3D rendering and interactive model viewing</p>
+                </div>
+                
+                <div class="glass-card feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>Material Database</h3>
+                    <p>Access to multiple real-world materials with accurate physical properties and cost data for realistic simulations.</p>
+                </div>
+                
+                <div class="glass-card feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-hard-hat"></i>
+                    </div>
+                    <h3>Marketplace & Builder Tech</h3>
+                    <p>Intelligent builder matching using project requirements in app real-time chat with builders and vendors</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Structuras.ai</h3>
+                    <p>A next-gen application combining an intelligent marketplace with AI-generated 3D designs and ready-made layouts to save time and build smarter.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Platform</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="features.html">AI Features</a></li>
+                        <li><a href="marketplace.html">Professional Network</a></li>
+                        <li><a href="designs.html">Design Gallery</a></li>
+                        <li><a href="founders.html">Our Founders</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Technology</h3>
+                    <ul class="footer-links">
+                        <li><a href="features.html#main-features">AI Design Engine</a></li>
+                        <li><a href="features.html#demo">3D Visualization</a></li>
+                        <li><a href="features.html#main-features">Cost Estimation AI</a></li>
+                        <li><a href="features.html#technical-features">Material Database</a></li>
+                        <li><a href="features.html#main-features">VR Integration</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <p>Questions about our AI platform?</p>
+                    <div style="margin-top: 20px;">
+                        <p><i class="fas fa-envelope" style="color: var(--primary); margin-right: 10px;"></i> divbisht01@gmail.com, ahmednizam0024@gmail.com</p>
+                        <p><i class="fas fa-map-marker-alt" style="color: var(--primary); margin-right: 10px;"></i> India</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 Structuras.ai. All rights reserved. | A next-gen app for AI 3D designs and smart marketplaces.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ========== SET ACTIVE NAVIGATION LINK ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set features page as active
+            document.getElementById('nav-features').classList.add('active');
+            document.getElementById('mobile-nav-features').classList.add('active');
+        });
+
+        // ========== MOBILE MENU TOGGLE ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const mobileMenuClose = document.querySelector('.mobile-menu-close');
+            const mobileMenuLinks = document.querySelectorAll('.mobile-menu .nav-links a');
+            
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.add('active');
+                });
+                
+                mobileMenuClose.addEventListener('click', () => {
+                    mobileMenu.classList.remove('active');
+                });
+                
+                mobileMenuLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.remove('active');
+                    });
+                });
+            }
+            
+            // ========== HIDE LOADING SCREEN ==========
+            setTimeout(() => {
+                const loadingScreen = document.getElementById('loadingScreen');
+                if (loadingScreen) {
+                    loadingScreen.style.opacity = '0';
+                    setTimeout(() => {
+                        loadingScreen.style.display = 'none';
+                    }, 500);
+                }
+            }, 1500);
+            
+            // ========== SMOOTH SCROLLING ==========
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Network | Structuras.ai</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ========== GLOBAL STYLES ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #22c55e;
+            --primary-dark: #16a34a;
+            --secondary: #3b82f6;
+            --accent: #8b5cf6;
+            --dark-bg: #0f172a;
+            --darker-bg: #020617;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --text-light: #f8fafc;
+            --text-dim: #94a3b8;
+            --glass: rgba(255, 255, 255, 0.08);
+            --border: rgba(255, 255, 255, 0.1);
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+
+        section {
+            padding: 100px 5%;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+            position: relative;
+        }
+
+        .section-title span {
+            color: var(--primary);
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-dim);
+            max-width: 700px;
+            margin-bottom: 3rem;
+            line-height: 1.7;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: var(--shadow);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(34, 197, 94, 0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(34, 197, 94, 0.1);
+        }
+
+        .glass-card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        /* ========== TOP NAVIGATION ========== */
+        .main-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            padding: 0 5%;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
+
+        .logo i {
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 8px;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.92rem;
+            font-weight: 500;
+            padding: 10px 16px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover {
+            background: rgba(34, 197, 94, 0.1);
+            color: var(--primary);
+        }
+
+        .nav-links a.active {
+            background: rgba(34, 197, 94, 0.15);
+            color: var(--primary);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* ========== PAGE HEADER ========== */
+        .page-header {
+            padding-top: 150px;
+            padding-bottom: 80px;
+            background: linear-gradient(135deg, var(--darker-bg), #1e293b);
+            text-align: center;
+        }
+
+        /* ========== PROFESSIONAL CARDS ========== */
+        .professionals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .professional-card {
+            text-align: center;
+            padding: 40px 30px;
+            height: 100%;
+        }
+
+        .professional-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(34, 197, 94, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 2.5rem;
+            color: var(--primary);
+        }
+
+        .professional-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        /* ========== RATING STARS ========== */
+        .rating {
+            color: #fbbf24;
+            margin: 10px 0;
+        }
+
+        /* ========== FOOTER ========== */
+        footer {
+            background: #020617;
+            padding: 60px 5% 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: var(--text-dim);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(30, 41, 59, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+
+        /* ========== LOADING SCREEN ========== */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--darker-bg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 5px solid rgba(34, 197, 94, 0.1);
+            border-top: 5px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        /* ========== RESPONSIVE DESIGN ========== */
+        @media (max-width: 992px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .mobile-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 300px;
+                height: 100vh;
+                background: var(--darker-bg);
+                padding: 100px 40px;
+                transition: right 0.5s ease;
+                z-index: 999;
+                border-left: 1px solid var(--border);
+            }
+            
+            .mobile-menu.active {
+                right: 0;
+            }
+            
+            .mobile-menu .nav-links {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .mobile-menu-close {
+                position: absolute;
+                top: 30px;
+                right: 30px;
+                font-size: 1.8rem;
+                cursor: pointer;
+                color: var(--primary);
+            }
+            
+            .section-title {
+                font-size: 2.3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 80px 5%;
+            }
+            
+            .page-header {
+                padding-top: 120px;
+                padding-bottom: 60px;
+            }
+            
+            .professionals-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .page-header {
+                padding-top: 100px;
+                padding-bottom: 50px;
+            }
+        }
+
+        /* ========== UTILITY CLASSES ========== */
+        .text-center {
+            text-align: center;
+        }
+
+        .mb-30 {
+            margin-bottom: 30px;
+        }
+
+        .mt-50 {
+            margin-top: 50px;
+        }
+
+        /* ========== ANIMATIONS ========== */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        .section-subtitle {
+  text-align: center;
+  max-width: 700px;
+  margin: 20px auto;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;  /* stack vertically */
+  align-items: center;     /* center horizontally */
+}
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Loading Professional Network...</div>
+    </div>
+
+    <!-- Top Navigation -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-robot"></i>
+                Structuras.ai
+            </a>
+            
+            <div class="nav-links">
+                <a href="index.html" id="nav-home">Home</a>
+                <a href="features.html" id="nav-features">Features</a>
+                <a href="marketplace.html" id="nav-marketplace">Marketplace</a>
+                <a href="designs.html" id="nav-designs">Designs</a>
+                <a href="founders.html" id="nav-founders">Founders</a>
+                <a href="index.html#contact" class="btn">Get Started</a>
+            </div>
+            
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-close">
+            <i class="fas fa-times"></i>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" id="mobile-nav-home">Home</a>
+            <a href="features.html" id="mobile-nav-features">Features</a>
+            <a href="marketplace.html" id="mobile-nav-marketplace">Marketplace</a>
+            <a href="designs.html" id="mobile-nav-designs">Designs</a>
+            <a href="founders.html" id="mobile-nav-founders">Founders</a>
+            <a href="index.html#contact" class="btn">Get Started</a>
+        </div>
+    </div>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="container">
+            <h1 class="section-title">Professional <span>Network</span></h1>
+            <p class="section-subtitle">Connect with top architects, designers, and builders vetted by our AI verification system</p>
+        </div>
+    </div>
+
+    <!-- Professionals Section -->
+    <section id="professionals">
+        <div class="container">
+            <h2 class="section-title text-center">Find <span>Verified Experts</span></h2>
+            <p class="section-subtitle text-center">Our AI verifies credentials, reviews, and past work to ensure you connect with the best professionals</p>
+            
+            <div class="professionals-grid">
+                <div class="glass-card professional-card floating">
+                    <div class="professional-icon">
+                        <i class="fas fa-drafting-compass"></i>
+                    </div>
+                    <h3>Architects</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span style="color: var(--text-dim); margin-left: 10px;">4.7/5</span>
+                    </div>
+                    <p>Browse portfolios of architectural firms specializing in residential design. Get custom designs for your plot with AI-assisted optimization.</p>
+                    <ul style="text-align: left; margin-top: 20px; color: var(--text-dim);">
+                        <li>✓ AI-verified credentials</li>
+                        <li>✓ Portfolio analysis</li>
+                        <li>✓ Client reviews</li>
+                        <li>✓ Project success rate</li>
+                    </ul>
+                    <a href="#" class="btn" style="margin-top: 25px; width: 100%;">
+                        <i class="fas fa-search"></i>
+                        Browse Architects
+                    </a>
+                </div>
+                
+                <div class="glass-card professional-card floating" style="animation-delay: 0.2s;">
+                    <div class="professional-icon">
+                        <i class="fas fa-couch"></i>
+                    </div>
+                    <h3>Interior Designers</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span style="color: var(--text-dim); margin-left: 10px;">4.9/5</span>
+                    </div>
+                    <p>Find interior designers who can transform your space. View their previous work, design styles, and material preferences.</p>
+                    <ul style="text-align: left; margin-top: 20px; color: var(--text-dim);">
+                        <li>✓ Style matching AI</li>
+                        <li>✓ 3D room visualizations</li>
+                        <li>✓ Budget optimization</li>
+                        <li>✓ Material sourcing</li>
+                    </ul>
+                    <a href="#" class="btn" style="margin-top: 25px; width: 100%;">
+                        <i class="fas fa-palette"></i>
+                        Find Designers
+                    </a>
+                </div>
+                
+                <div class="glass-card professional-card floating" style="animation-delay: 0.4s;">
+                    <div class="professional-icon">
+                        <i class="fas fa-hammer"></i>
+                    </div>
+                    <h3>Builders & Contractors</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span style="color: var(--text-dim); margin-left: 10px;">4.6/5</span>
+                    </div>
+                    <p>Connect with reliable construction companies. Check ratings, completed projects, client reviews, and safety records.</p>
+                    <ul style="text-align: left; margin-top: 20px; color: var(--text-dim);">
+                        <li>✓ License verification</li>
+                        <li>✓ Insurance validation</li>
+                        <li>✓ Timeline accuracy</li>
+                        <li>✓ Quality assurance</li>
+                    </ul>
+                    <a href="#" class="btn" style="margin-top: 25px; width: 100%;">
+                        <i class="fas fa-tools"></i>
+                        Hire Builders
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" style="background: var(--darker-bg);">
+        <div class="container">
+            <h2 class="section-title text-center">How Our <span>Marketplace Works</span></h2>
+            <p class="section-subtitle text-center">Simple steps to find and hire the perfect professionals for your project</p>
+            
+            <div class="professionals-grid">
+                <div class="glass-card professional-card">
+                    <div class="professional-icon" style="background: rgba(59, 130, 246, 0.1); color: var(--secondary);">
+                        <i class="fas fa-upload"></i>
+                    </div>
+                    <h3>1. Upload Your Design</h3>
+                    <p>Share your AI-generated design or upload your own plans. Set your budget, timeline, and requirements.</p>
+                </div>
+                
+                <div class="glass-card professional-card">
+                    <div class="professional-icon" style="background: rgba(139, 92, 246, 0.1); color: var(--accent);">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>2. AI Matching</h3>
+                    <p>Our AI analyzes your project and matches you with the most suitable professionals based on skills, location, and availability.</p>
+                </div>
+                
+                <div class="glass-card professional-card">
+                    <div class="professional-icon" style="background: rgba(34, 197, 94, 0.1); color: var(--primary);">
+                        <i class="fas fa-comments-dollar"></i>
+                    </div>
+                    <h3>3. Receive Quotes</h3>
+                    <p>Get detailed quotes from multiple professionals. Compare prices, timelines, and approaches side-by-side.</p>
+                </div>
+                
+                <div class="glass-card professional-card">
+                    <div class="professional-icon" style="background: rgba(245, 158, 11, 0.1); color: #f59e0b;">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>4. Hire & Collaborate</h3>
+                    <p>Select your preferred professional and collaborate through our platform with built-in project management tools.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Structuras.ai</h3>
+                    <p>A next-gen application combining an intelligent marketplace with AI-generated 3D designs and ready-made layouts to save time and build smarter.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Platform</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="features.html">AI Features</a></li>
+                        <li><a href="marketplace.html">Professional Network</a></li>
+                        <li><a href="designs.html">Design Gallery</a></li>
+                        <li><a href="founders.html">Our Founders</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>For Professionals</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Join Our Network</a></li>
+                        <li><a href="#">Verification Process</a></li>
+                        <li><a href="#">Project Tools</a></li>
+                        <li><a href="#">Client Management</a></li>
+                        <li><a href="#">Payment System</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <p>Questions about our professional network?</p>
+                    <div style="margin-top: 20px;">
+                        <p><i class="fas fa-envelope" style="color: var(--primary); margin-right: 10px;"></i> divbisht01@gmail.com, ahmednizam0024@gmail.com</p>
+                        <p><i class="fas fa-map-marker-alt" style="color: var(--primary); margin-right: 10px;"></i> INDIA</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 Structuras.ai. All rights reserved. | A next-gen app for AI 3D designs and smart marketplaces.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ========== SET ACTIVE NAVIGATION LINK ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set marketplace page as active
+            document.getElementById('nav-marketplace').classList.add('active');
+            document.getElementById('mobile-nav-marketplace').classList.add('active');
+        });
+
+        // ========== MOBILE MENU TOGGLE ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const mobileMenuClose = document.querySelector('.mobile-menu-close');
+            const mobileMenuLinks = document.querySelectorAll('.mobile-menu .nav-links a');
+            
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.add('active');
+                });
+                
+                mobileMenuClose.addEventListener('click', () => {
+                    mobileMenu.classList.remove('active');
+                });
+                
+                mobileMenuLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.remove('active');
+                    });
+                });
+            }
+            
+            // ========== HIDE LOADING SCREEN ==========
+            setTimeout(() => {
+                const loadingScreen = document.getElementById('loadingScreen');
+                if (loadingScreen) {
+                    loadingScreen.style.opacity = '0';
+                    setTimeout(() => {
+                        loadingScreen.style.display = 'none';
+                    }, 500);
+                }
+            }, 1500);
+            
+            // ========== SMOOTH SCROLLING ==========
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
