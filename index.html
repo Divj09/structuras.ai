@@ -975,14 +975,35 @@
                 <div class="video-frame">
                     <div class="ai-badge">AI-POWERED 3D DESIGN</div>
                     
-                    <!-- Main Video -->
-                    <video class="hero-video" autoplay muted loop playsinline
-                           onerror="this.onerror=null; this.style.display='none'; document.getElementById('villaFallback').style.display='flex';">
-                        <source src="https://files.catbox.moe/r74hy8.mp4" type="video/mp4">
-                        <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" fallback>
-                        Your browser does not support the video tag.
-                    </video>
-                    
+                  <div class="hero-media-wrapper" style="position:relative; width:100%; height:100%;">
+
+    <!-- MAIN VIDEO -->
+    <video class="hero-video"
+           autoplay
+           muted
+           loop
+           playsinline
+           poster="assets/images/modern-villa.jpg"
+           onerror="this.style.display='none'; document.getElementById('villaFallback').style.display='block';">
+
+        <source src="https://files.catbox.moe/r74hy8.mp4" type="video/mp4">
+
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- IMAGE FALLBACK -->
+    <img id="villaFallback"
+         src="assets/images/modern-villa.jpg"
+         alt="Modern Luxury Villa"
+         style="
+            display:none;
+            width:100%;
+            height:100%;
+            object-fit:cover;
+            border-radius:20px;
+         ">
+</div>
+
                     <!-- Video Fallback -->
                     <div id="villaFallback" class="video-fallback" style="display: none;">
                         <i class="fas fa-home"></i>
@@ -1374,4 +1395,5 @@
 </body>
 
 </html>
+
 
